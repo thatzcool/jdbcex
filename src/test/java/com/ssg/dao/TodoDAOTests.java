@@ -8,12 +8,14 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static java.time.LocalTime.now;
 
 public class TodoDAOTests {
     private TodoDAO todoDAO;
-    private TodoVO      todoVO;
+    private TodoVO todoVO;
+
     @BeforeEach
     public void ready1() {
         todoDAO = new TodoDAO();
@@ -26,8 +28,17 @@ public class TodoDAOTests {
     }
 
     @Test
-    public void  testInsert() throws Exception {
-      TodoVO  vo = TodoVO.builder().title("Sample Test todovo1").dueDate(LocalDateTime.now()).build();
+    public void testInsert() throws Exception {
+        TodoVO vo = TodoVO.builder().title("Sample Test todovo1").dueDate(LocalDateTime.now()).build();
         todoDAO.insert(vo);
     }
+
+    @Test
+    public void testList() throws Exception {
+        List<TodoVO> voList = todoDAO.selectAll();
+        voList.forEach(System.out::println);
+
+
+    }
+
 }

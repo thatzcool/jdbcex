@@ -5,6 +5,8 @@ import lombok.Cleanup;
 
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 //DB 로 부터 시간 얻어오는 간단한 기능 구현
 public class TodoDAO {
@@ -47,5 +49,37 @@ public class TodoDAO {
         ps.executeUpdate();
 
     }
+
+    public List<TodoVO> selectAll() throws Exception {
+      String sql = "select * from tbl_todo";
+
+      @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
+      @Cleanup PreparedStatement ps = connection.prepareStatement(sql);
+      @Cleanup ResultSet rs = ps.executeQuery();
+
+      List<TodoVO> list = new ArrayList<>();
+
+      while (rs.next()) {
+          TodoVO vo = TodoVO.builder().tno(rs.getLong("tno"))
+                  .title(rs.getString("title"))
+                  .dueDate(rs.getDate("dueDate").toLocalDate().atStartOfDay())
+                  .finished(rs.getBoolean("finished")).build();
+
+          list.add(vo);
+      }
+
+    return list;
+    }
+
+    // todoVo  one delete
+    public void deleteOne(String tno) throws SQLException {}
+
+    //todoVo one update   테스트 코드까지 완성하기
+
+    public void updateOne(TodoVO todoVO) throws  Exception{}
+
+
+
+
 
 }

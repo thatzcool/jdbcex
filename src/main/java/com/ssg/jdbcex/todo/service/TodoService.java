@@ -4,6 +4,7 @@ import com.ssg.jdbcex.todo.dao.TodoDAO;
 import com.ssg.jdbcex.todo.domain.TodoVO;
 import com.ssg.jdbcex.todo.dto.TodoDTO;
 import com.ssg.jdbcex.todo.util.MapperUtil;
+import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 
 import java.sql.SQLException;
@@ -13,17 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-/**
- * packageName   : com.ssg.w1.todo.service
- * fileName      : TodoService
- * author        : a
- * date          : 2025-04-07
- * description   :
- * =================================================
- * DATE             AUTHOR             NOTE
- * -------------------------------------------------
- * 2025-04-07        a
- */
+@Log4j2
 public enum TodoService {
     INSTANCE;
 
@@ -38,9 +29,11 @@ public enum TodoService {
 
 
     public void register(TodoDTO todoDTO) throws SQLException {
-        System.out.println("DEBUG.........." + todoDTO);
+       // System.out.println("DEBUG.........." + todoDTO);
+
         TodoVO todoVO = modelMapper.map(todoDTO, TodoVO.class);
-        System.out.println("todoVoO : " + todoVO);
+        log.info(todoVO);
+        //System.out.println("todoVoO : " + todoVO);
         dao.insert(todoVO);
     }
 

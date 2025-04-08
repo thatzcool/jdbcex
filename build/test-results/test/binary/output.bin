@@ -1,6 +1,6 @@
-GTodoVO(tno=1, title=공부하기, dueDate=2025-04-08, finished=false)
-FTodoVO(tno=2, title=놀러가기, dueDate=2025-04-08, finished=true)
-FTodoVO(tno=3, title=집에가기, dueDate=2025-04-08, finished=true)
-MTodoVO(tno=4, title=운동하러가기, dueDate=2025-04-08, finished=false)
-NTodoVO(tno=5, title=Sample Test todovo1, dueDate=2025-04-07, finished=false)
-]TodoVO(tno=6, title=Sample Test Mapper Register todovo2, dueDate=2025-04-07, finished=true)
+�16:59:05.421 [Test worker] INFO  com.ssg.service.TodoServiceTests - TodoDTO(tno=null, title=Sample Test Mapper Register todovo4, dueDate=2025-04-09, finished=false)
+�16:59:05.476 [Test worker] INFO  com.ssg.jdbcex.todo.service.TodoService - TodoVO(tno=null, title=Sample Test Mapper Register todovo4, dueDate=2025-04-09, finished=false)
+b16:59:05.528 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+�16:59:06.013 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6d4c273c
+g16:59:06.016 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+h16:59:06.116 [Test worker] INFO  com.ssg.service.TodoServiceTests - ==================================

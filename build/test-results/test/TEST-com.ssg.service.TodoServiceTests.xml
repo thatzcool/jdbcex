@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.ssg.service.TodoServiceTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-04-08T07:59:05" hostname="DESKTOP-TK57VD2" time="0.809">
+  <properties/>
+  <testcase name="testRegister()" classname="com.ssg.service.TodoServiceTests" time="0.809"/>
+  <system-out><![CDATA[16:59:05.421 [Test worker] INFO  com.ssg.service.TodoServiceTests - TodoDTO(tno=null, title=Sample Test Mapper Register todovo4, dueDate=2025-04-09, finished=false)
+16:59:05.476 [Test worker] INFO  com.ssg.jdbcex.todo.service.TodoService - TodoVO(tno=null, title=Sample Test Mapper Register todovo4, dueDate=2025-04-09, finished=false)
+16:59:05.528 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+16:59:06.013 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6d4c273c
+16:59:06.016 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+16:59:06.116 [Test worker] INFO  com.ssg.service.TodoServiceTests - ==================================
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

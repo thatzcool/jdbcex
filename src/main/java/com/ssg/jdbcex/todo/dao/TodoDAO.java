@@ -5,7 +5,6 @@ import lombok.Cleanup;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,9 +41,8 @@ public class TodoDAO {
 
         @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
         @Cleanup PreparedStatement ps = ConnectionUtil.INSTANCE.getConnection().prepareStatement(sql);
-
         ps.setString(1, vo.getTitle());
-        ps.setDate(2, Date.valueOf(LocalDate.now()));
+        ps.setDate(2, Date.valueOf(vo.getDueDate()));
         ps.setBoolean(3, vo.isFinished());
 
         ps.executeUpdate();

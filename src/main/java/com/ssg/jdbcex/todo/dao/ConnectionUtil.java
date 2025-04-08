@@ -14,9 +14,9 @@ public enum ConnectionUtil {
     ConnectionUtil() {
         HikariConfig config = new HikariConfig();
         config.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        config.setJdbcUrl("jdbc:mysql://localhost:3306/ssgdb?serverTimezone=UTC");
-        config.setUsername("root");
-        config.setPassword("mysql1234");
+        config.setJdbcUrl("jdbc:mysql://localhost:3306/____?serverTimezone=UTC");
+        config.setUsername("____");
+        config.setPassword("____");
         config.addDataSourceProperty("cachePrepStmts", "true");
         config.addDataSourceProperty("prepStmtCacheSize", "250");
         config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");

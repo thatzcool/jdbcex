@@ -4,6 +4,7 @@ import com.ssg.jdbcex.todo.domain.TodoVO;
 import lombok.Cleanup;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +44,7 @@ public class TodoDAO {
         @Cleanup PreparedStatement ps = ConnectionUtil.INSTANCE.getConnection().prepareStatement(sql);
 
         ps.setString(1, vo.getTitle());
-        ps.setDate(2, Date.valueOf(vo.getDueDate().toLocalDate()));
+        ps.setDate(2, Date.valueOf(LocalDate.now()));
         ps.setBoolean(3, vo.isFinished());
 
         ps.executeUpdate();
@@ -62,7 +63,7 @@ public class TodoDAO {
       while (rs.next()) {
           TodoVO vo = TodoVO.builder().tno(rs.getLong("tno"))
                   .title(rs.getString("title"))
-                  .dueDate(rs.getDate("dueDate").toLocalDate().atStartOfDay())
+                  .dueDate(rs.getDate("dueDate").toLocalDate())
                   .finished(rs.getBoolean("finished")).build();
 
           list.add(vo);

@@ -29,7 +29,7 @@ public class TodoDAOTests {
 
     @Test
     public void testInsert() throws Exception {
-        TodoVO vo = TodoVO.builder().title("Sample Test todovo1").dueDate(LocalDateTime.now()).build();
+        TodoVO vo = TodoVO.builder().title("Sample Test todovo1").dueDate(LocalDate.now()).build();
         todoDAO.insert(vo);
     }
 

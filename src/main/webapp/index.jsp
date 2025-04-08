@@ -5,9 +5,9 @@
     <title>JSP - Hello World</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
+<h1> Todo : 해야 할 일들.....
 </h1>
 <br/>
-<a href="hello-servlet">Hello Servlet</a>
+<a href="/todo/list">TODO Service</a>
 </body>
 </html>

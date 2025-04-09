@@ -9,52 +9,52 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class MemberDAO {
-      public MemberVO getWithPassword(String mid, String mpw) throws Exception {
-          String sql = "select  mid, mpw,mname from tbl_member where mid = ? and mpw = ?";
+    public MemberVO getWithPassword(String mid, String mpw) throws Exception {
+        String sql = "select  mid, mpw,mname from tbl_member where mid = ? and mpw = ?";
 
-          MemberVO vo = new MemberVO();
+        MemberVO vo = new MemberVO();
 
-          @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
-          @Cleanup PreparedStatement ps = connection.prepareStatement(sql);
-          ps.setString(1, mid);
-          ps.setString(2, mpw);
+        @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
+        @Cleanup PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setString(1, mid);
+        ps.setString(2, mpw);
 
-          @Cleanup ResultSet rs = ps.executeQuery();
-           rs.next();
-          vo = MemberVO.builder()
-                  .mid(rs.getString(1))
-                  .mpw(rs.getString(2))
-                  .mname(rs.getString(3)).build();
-          return vo;
-      }
+        @Cleanup ResultSet rs = ps.executeQuery();
+        rs.next();
+        vo = MemberVO.builder()
+                .mid(rs.getString(1))
+                .mpw(rs.getString(2))
+                .mname(rs.getString(3)).build();
+        return vo;
+    }
 
-      public void updateUuid(String mid, String uuid) throws Exception {
-          String sql = "update tbl_member set uuid = ? where mid = ?";
-          @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
-          @Cleanup PreparedStatement ps = connection.prepareStatement(sql);
-                ps.setString(1, uuid);
-                ps.setString(2, mid);
-                ps.executeUpdate();
-      }
-
-
+    public void updateUuid(String mid, String uuid) throws Exception {
+        String sql = "update tbl_member set uuid = ? where mid = ?";
+        @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
+        @Cleanup PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setString(1, uuid);
+        ps.setString(2, mid);
+        ps.executeUpdate();
+    }
 
 
+    public MemberVO selectUUID(String uuid) throws Exception {
+        String sql = "select mid,mpw,mname , uuid from tbl_member where uuid = ?";
 
+        @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
+        @Cleanup PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setString(1, uuid);
+        @Cleanup ResultSet rs = ps.executeQuery();
 
+        rs.next();
 
-
-
-
-
-
-
-
-
-
-
-
-
+        MemberVO vo = MemberVO.builder()
+                .mid(rs.getString(1))
+                .mpw(rs.getString(2))
+                .mname(rs.getString(3))
+                .uuid(rs.getString(4)).build();
+         return vo;
+    }
 
 
 }

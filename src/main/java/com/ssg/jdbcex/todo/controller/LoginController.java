@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.UUID;
 
 @WebServlet("/login")
 @Log
@@ -27,11 +28,24 @@ public class LoginController extends HttpServlet {
         log.info("login post...........");
         String mid = req.getParameter("mid");
         String mpwd = req.getParameter("mpwd");
+        String auto = req.getParameter("auto");
 
-        String str = mid+mpwd;
+        boolean rememberMe = auto != null && auto.equals("on");
+        if(rememberMe){
+            String uuid = UUID.randomUUID().toString();
+        }
+//        String str = mid+mpwd;
 
         try {
             MemberDTO memberDTO = MemberService.INSTANCE.login(mid,mpwd);
+
+            if(rememberMe){
+                String uuid = UUID.randomUUID().toString();
+                MemberService.INSTANCE.updateUuid(mid,uuid);
+                memberDTO.setUuid(uuid);
+            }
+
+
             HttpSession session = req.getSession();
             session.setAttribute("loginInfo", memberDTO);
             resp.sendRedirect(req.getContextPath() + "/todo/list");

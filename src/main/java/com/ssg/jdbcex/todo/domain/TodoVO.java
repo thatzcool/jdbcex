@@ -19,4 +19,5 @@ public class TodoVO {
 
     private boolean finished;
 
+
 }

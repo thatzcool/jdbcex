@@ -1,5 +1,7 @@
 package com.ssg.jdbcex.todo.controller;
 
+import com.ssg.jdbcex.todo.dto.MemberDTO;
+import com.ssg.jdbcex.todo.service.MemberService;
 import lombok.extern.java.Log;
 import lombok.extern.log4j.Log4j;
 
@@ -27,9 +29,16 @@ public class LoginController extends HttpServlet {
         String mpwd = req.getParameter("mpwd");
 
         String str = mid+mpwd;
-        HttpSession session = req.getSession();
-        session.setAttribute("loginInfo", str);
-        resp.sendRedirect(req.getContextPath() + "/todo/list");
+
+        try {
+            MemberDTO memberDTO = MemberService.INSTANCE.login(mid,mpwd);
+            HttpSession session = req.getSession();
+            session.setAttribute("loginInfo", memberDTO);
+            resp.sendRedirect(req.getContextPath() + "/todo/list");
+        } catch (Exception e) {
+           resp.sendRedirect(req.getContextPath() + "/login?result=error");
+        }
+
 
     }
 }

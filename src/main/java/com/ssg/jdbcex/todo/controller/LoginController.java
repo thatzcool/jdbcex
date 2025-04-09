@@ -7,10 +7,7 @@ import lombok.extern.log4j.Log4j;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.UUID;
 
@@ -38,13 +35,19 @@ public class LoginController extends HttpServlet {
 
         try {
             MemberDTO memberDTO = MemberService.INSTANCE.login(mid,mpwd);
+          // 자동로그인을 체크한 사용자에게 Uuid 생성해서 문자열값 DB 저장
 
             if(rememberMe){
-                String uuid = UUID.randomUUID().toString();
+              String uuid = UUID.randomUUID().toString();
                 MemberService.INSTANCE.updateUuid(mid,uuid);
                 memberDTO.setUuid(uuid);
-            }
+                // 브라우저에게 전달한 remember-me 로 전송한 이름의 쿠키를 생성하여 전송
 
+                Cookie rememberCookie = new Cookie("remember-me",uuid);
+                rememberCookie.setPath("/");
+                rememberCookie.setMaxAge(60*60*24*7);
+                resp.addCookie(rememberCookie);
+            }
 
             HttpSession session = req.getSession();
             session.setAttribute("loginInfo", memberDTO);
